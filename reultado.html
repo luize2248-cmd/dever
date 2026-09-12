@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <title>Resultado - Calculadora</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 20px;
+
+            background:
+                radial-gradient(circle at top left, #38bdf8, transparent 35%),
+                radial-gradient(circle at bottom right, #7c3aed, transparent 35%),
+                linear-gradient(135deg, #0f172a, #1e293b);
+        }
+
+        .container {
+            width: 450px;
+            padding: 45px 40px;
+
+            text-align: center;
+
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, 0.35);
+
+            animation: aparecer 0.7s ease;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 34px;
+            margin-bottom: 30px;
+
+            text-shadow:
+                0 3px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        .conta {
+            background: rgba(255, 255, 255, 0.95);
+
+            border: 2px solid rgba(56, 189, 248, 0.5);
+
+            border-radius: 16px;
+
+            padding: 28px 20px;
+
+            margin-bottom: 30px;
+
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .conta h2 {
+            color: #334155;
+
+            font-size: 25px;
+            font-weight: 600;
+
+            line-height: 1.5;
+        }
+
+        .resultado {
+            display: block;
+
+            margin-top: 12px;
+
+            color: #2563eb;
+
+            font-size: 42px;
+            font-weight: 700;
+
+            text-shadow:
+                0 3px 10px rgba(37, 99, 235, 0.2);
+
+            animation: resultado 0.8s ease;
+        }
+
+        .botoes {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .botoes a {
+            text-decoration: none;
+        }
+
+        button {
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+            border-radius: 11px;
+
+            background: linear-gradient(
+                135deg,
+                #38bdf8,
+                #2563eb
+            );
+
+            color: white;
+
+            font-size: 17px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 20px rgba(37, 99, 235, 0.4);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                filter 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+
+            filter: brightness(1.1);
+
+            box-shadow:
+                0 12px 25px rgba(37, 99, 235, 0.55);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .home {
+            display: block;
+
+            color: #bae6fd;
+
+            text-decoration: none;
+
+            margin-top: 22px;
+
+            font-size: 15px;
+            font-weight: 500;
+
+            transition: 0.2s ease;
+        }
+
+        .home:hover {
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(25px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes resultado {
+            from {
+                opacity: 0;
+                transform: scale(0.7);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                width: 100%;
+                padding: 35px 25px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            .conta h2 {
+                font-size: 21px;
+            }
+
+            .resultado {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Resultado</h1>
+
+        <div class="conta">
+
+            <h2>
+                {{ numero1 }}
+                {{ operador }}
+                {{ numero2 }}
+                =
+                <span class="resultado">
+                    {{ resultado }}
+                </span>
+            </h2>
+
+        </div>
+
+        <div class="botoes">
+
+            <a href="/operacao">
+                <button>
+                    Nova operação
+                </button>
+            </a>
+
+        </div>
+
+        <a href="/" class="home">
+            ← Voltar para Home
+        </a>
+
+    </div>
+
+</body>
+
+</html>
